@@ -15,21 +15,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            SIS2Theme {
-
-                // 🔥 Здесь уже внутри @Composable — можно вызывать viewModel()
-
-                val viewModel: FeedViewModel = viewModel(
-                    factory = object : ViewModelProvider.Factory {
-                        @Suppress("UNCHECKED_CAST")
-                        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                            return FeedViewModel(SavedStateHandle()) as T
-                        }
-                    }
-                )
-
+            SIS2Theme(darkTheme = true) {
+                val viewModel: FeedViewModel = viewModel()
                 FeedScreen(viewModel = viewModel)
             }
         }
+
     }
 }
